@@ -1,6 +1,6 @@
 # qa-gym-library-include
 
-Repositório de exemplo para a atividade prática de **Git, Pull Requests e Code Review** do programa de estágio.
+Repositório de exemplo para a atividade prática de **Git, Pull Requests e Code Review** do programa #include.
 
 O projeto simula um pequeno sistema de biblioteca acadêmica, com funcionalidades básicas já implementadas e várias lacunas intencionais para melhoria. O objetivo é praticar desenvolvimento colaborativo, testes automatizados, revisão de código e integração contínua.
 
