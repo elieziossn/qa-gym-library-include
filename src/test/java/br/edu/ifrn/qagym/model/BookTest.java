@@ -50,4 +50,22 @@ class BookTest {
         Book book = new Book("978-0-13-468599-1", "Clean Code", "Robert C. Martin", 2008);
         assertThat(book.getPublicationYear()).isEqualTo(2008);
     }
+
+    @Test
+    void deveRetornarVerdadeiroQuandoLivroForClassico(){
+        Book book = new Book("978-0-13-468599-1", "Livro Antigo", "Robert C. Martin", 1950);
+        assertThat(book.isClassic()).isTrue();
+    }
+
+    @Test
+    void deveRetornarFalsoQuandoLivroNaoForClassico(){
+        Book book = new Book("978-0-13-468599-1", "Livro Novo", "Robert C. Martin", 2020);
+        assertThat(book.isClassic()).isFalse();
+    }
+
+    @Test
+    void deveRetornarFalsoQuandoLivroTiverExatamente50Anos(){
+        Book book = new Book("978-0-13-468599-1", "Livro Limite", "Robert C. Martin", 1976);
+        assertThat(book.isClassic()).isFalse();
+    }
 }
