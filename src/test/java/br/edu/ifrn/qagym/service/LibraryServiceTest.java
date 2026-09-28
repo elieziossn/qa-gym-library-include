@@ -1,12 +1,13 @@
 package br.edu.ifrn.qagym.service;
 
-import br.edu.ifrn.qagym.model.Book;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import br.edu.ifrn.qagym.model.Book;
 
 class LibraryServiceTest {
 
@@ -59,5 +60,18 @@ class LibraryServiceTest {
         service.addBook(b1);
         service.addBook(b2);
         assertThat(service.getAllBooks()).hasSize(2);
+    }
+
+    @Test 
+    void deveRetornarQuantidadeDeLivrosCadastrados(){
+        Book book1 = new Book("978-8572322690", "Pequeno Príncipe", "Antoine de Saint-Exupéry.", 1943);
+        Book book2 = new Book("978-6525923536", "Superalmanaque da Turma da Mônica", "Maurício de Souza", 2024);
+        Book book3 = new Book("978-8525063304", "Rita Lee: Uma autobiografia", "Rita Lee", 2016);
+
+        service.addBook(book1);
+        service.addBook(book2);
+        service.addBook(book3);
+
+        assertThat(service.countBooks()).isEqualTo(3);
     }
 }
