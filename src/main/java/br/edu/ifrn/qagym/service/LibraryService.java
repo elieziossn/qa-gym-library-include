@@ -57,8 +57,13 @@ public class LibraryService {
     }
 
     public int countAvailableBooks() {
-        // TODO: implementar contagem de livros disponíveis
-        return 0;
+        int count = 0;
+        for (Book book : books) {
+            if (book.isAvailable()) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public int countUnavailableBooks() {

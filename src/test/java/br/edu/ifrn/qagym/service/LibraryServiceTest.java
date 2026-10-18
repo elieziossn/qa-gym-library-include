@@ -60,4 +60,16 @@ class LibraryServiceTest {
         service.addBook(b2);
         assertThat(service.getAllBooks()).hasSize(2);
     }
+
+    @Test
+    void deveRetornarQuantidadeDeLivrosDisponiveis() {
+        Book b1 = new Book("ISBN-1", "Livro 1", "Autor 1", 2020);
+        Book b2 = new Book("ISBN-2", "Livro 2", "Autor 2", 2021);
+        b2.setAvailable(false);
+
+        service.addBook(b1);
+        service.addBook(b2);
+
+        assertThat(service.countAvailableBooks()).isEqualTo(1);
+    }
 }
