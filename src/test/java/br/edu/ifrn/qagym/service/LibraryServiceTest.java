@@ -60,4 +60,24 @@ class LibraryServiceTest {
         service.addBook(b2);
         assertThat(service.getAllBooks()).hasSize(2);
     }
+
+    @Test
+    void deveOrdenarLivrosPorTituloSemAlterarOrdemDeCadastro() {
+        Book bookZ = new Book("ISBN-1", "Zoologia", "Autor A", 2000);
+        Book bookA = new Book("ISBN-2", "Algoritmos", "Autor B", 2001);
+        Book bookM = new Book("ISBN-3", "Matematica", "Autor C", 2002);
+        service.addBook(bookZ);
+        service.addBook(bookA);
+        service.addBook(bookM);
+
+        List<Book> sortedBooks = service.sortBooksByTitle();
+
+        assertThat(sortedBooks).containsExactly(bookA, bookM, bookZ);
+        assertThat(service.getAllBooks()).containsExactly(bookZ, bookA, bookM);
+    }
+
+    @Test
+    void deveRetornarListaVaziaAoOrdenarBibliotecaSemLivros() {
+        assertThat(service.sortBooksByTitle()).isEmpty();
+    }
 }
