@@ -1,12 +1,14 @@
 package br.edu.ifrn.qagym.service;
 
-import br.edu.ifrn.qagym.model.Book;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import br.edu.ifrn.qagym.model.Book;
 
 class LibraryServiceTest {
 
@@ -59,5 +61,23 @@ class LibraryServiceTest {
         service.addBook(b1);
         service.addBook(b2);
         assertThat(service.getAllBooks()).hasSize(2);
+    }
+
+    @Test
+    void deveRetornarListagemDeLivrosPorAutor() {
+        String author = "Graciliano Ramos";
+        Book book1 = new Book("978-8501114785", "Vidas Secas", "Graciliano Ramos", 1938);
+        Book book2 = new Book("978-6586655612", "A Chinela Turca", "Machado de Assis", 1875);
+        Book book3 = new Book("978-8501116413", "Memórias do Cárcere", "Graciliano Ramos", 1953);
+
+        List<Book> livrosEsperados = List.of(book1, book3);
+
+        service.addBook(book1);
+        service.addBook(book2);
+        service.addBook(book3);
+
+        List<Book> livrosRetornados = service.findBooksByAuthor(author);
+
+        assertEquals(livrosEsperados, livrosRetornados);
     }
 }
