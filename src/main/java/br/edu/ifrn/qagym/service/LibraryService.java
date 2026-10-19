@@ -4,6 +4,7 @@ import br.edu.ifrn.qagym.model.Book;
 import br.edu.ifrn.qagym.model.User;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class LibraryService {
@@ -68,7 +69,9 @@ public class LibraryService {
 
     public List<Book> sortBooksByTitle() {
         // TODO: implementar ordenação por título
-        return List.of();
+        List<Book> sortedBooks = new ArrayList<>(books);
+        sortedBooks.sort(Comparator.comparing(Book::getTitle));
+        return sortedBooks;
     }
 
     public List<Book> sortBooksByYear() {
